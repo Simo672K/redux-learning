@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import store from "./store";
+import "./App.css";
+import Card from "./Card";
+import Form from "./Form";
 
 function App() {
+  const [titles, setTitles] = useState([]);
+  console.log(store.getState());
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Form prev={titles} addTitle={setTitles} />
+      <ul>
+        {titles.map((title, id) => (
+          <Card key={id}>{title}</Card>
+        ))}
+      </ul>
     </div>
   );
 }
