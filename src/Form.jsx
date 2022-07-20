@@ -1,17 +1,12 @@
 import store from "./store";
 import { useState } from "react";
+import { addBook } from "./actions";
 
-function Form({ prev, addTitle }) {
+function Form() {
   const [bookName, setBookName] = useState("");
 
   const addBookHandler = (e) => {
-    store.dispatch({
-      type: "ADD_BOOK",
-      payload: {
-        title: bookName,
-      },
-    });
-    addTitle([...prev, bookName]);
+    store.dispatch(addBook(bookName));
     setBookName("");
     e.preventDefault();
   };

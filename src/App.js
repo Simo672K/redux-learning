@@ -6,13 +6,17 @@ import Form from "./Form";
 
 function App() {
   const [titles, setTitles] = useState([]);
-  console.log(store.getState());
+  const unsubscribe = store.subscribe(() => {
+    setTitles(store.getState());
+  });
+
+  console.log(titles);
   return (
     <div className="App">
-      <Form prev={titles} addTitle={setTitles} />
+      <Form />
       <ul>
-        {titles.map((title, id) => (
-          <Card key={id}>{title}</Card>
+        {titles.map((elem) => (
+          <Card key={elem.id}>{elem.title}</Card>
         ))}
       </ul>
     </div>
